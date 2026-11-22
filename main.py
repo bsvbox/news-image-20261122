@@ -25,10 +25,13 @@ ORANGE = (249, 115, 22)
 CREAM = (238, 232, 214)
 
 FONT_DIR = "/usr/share/fonts/truetype/dejavu"
+_FONTS_OK = os.path.exists(os.path.join(FONT_DIR, "DejaVuSerif-Bold.ttf"))
 
 
 def font(name, size):
-    return ImageFont.truetype(os.path.join(FONT_DIR, name), size)
+    if _FONTS_OK:
+        return ImageFont.truetype(os.path.join(FONT_DIR, name), size)
+    return ImageFont.load_default(size)
 
 
 SERIF_B = "DejaVuSerif-Bold.ttf"
